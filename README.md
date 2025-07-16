@@ -69,7 +69,7 @@ TELEGRAM_CHAT_ID=your_chat_id
 **4. Run the Bot**
 python main.py
 
-🧠 Skills Demonstrated
+🧠 Skills Demonstrated =
 ✅ Python Development
 ✅ API Integration (Binance, Telegram, Google Sheets)
 ✅ Trading Strategy Design
