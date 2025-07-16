@@ -57,13 +57,16 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 | Dynamic Rebalancing        | Re-allocate funds weekly based on performance                 | For serious long-term optimization           | 🔄 Future       | ✅ DONE      |
 ---
 
-## 📸 Sample Output
+## 📸 Sample Outputs
 
-### 🔹 Replit Outlook
-![Trade Chart](Screenshot%202025-07-16%20224152.png)
+### 🟩 Replit Console Output
+![Replit Console](Replit%20Outlook%20Screenshot)
 
-### 🔹 Google Sheets Trade Log
-![Trade Log](Screenshot%202025-07-16%20224625.png)
+### 📊 Streamlit Dashboard (Hosted on Replit)
+![Streamlit Dashboard](Streamlit%20in%20Replit%20Dasboard%20Screenshot)
+
+### 📄 Google Sheets Trade Log
+![Google Sheets Log](Google%20Logs%20Screenshot)
 
 ---
 
