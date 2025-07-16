@@ -57,6 +57,16 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 | Dynamic Rebalancing        | Re-allocate funds weekly based on performance                 | For serious long-term optimization           | 🔄 Future       | ✅ DONE      |
 ---
 
+## 📸 Sample Output
+
+### 🔹 Trade Chart (Telegram Alert)
+![Trade Chart](charts/sample_trade_chart.png)
+
+### 🔹 Trade Log (Google Sheets)
+![Trade Log](screenshots/trade_log_sample.png)
+
+---
+
 ## 🛠 Files & Structure
 Crypto-Trading-Bot/
 │
