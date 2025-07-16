@@ -59,7 +59,7 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 
 ## 📸 Sample Output
 
-### 🔹 Trade Chart (Telegram Screenshot)
+### 🔹 Replit Outlook
 ![Trade Chart](Screenshot%202025-07-16%20224152.png)
 
 ### 🔹 Google Sheets Trade Log
