@@ -129,4 +129,6 @@ This bot is for educational purposes only.
 I am not a financial advisor. Use at your own risk.
 Never use real money without fully understanding what the code does.
 
+> 🔒 **Security Note:** This project is configured for paper trading only. All API keys and sensitive details are stored privately using environment variables and are not exposed anywhere in this repository.
+
 **🙌 Created by @KhushiThakur-AI**
