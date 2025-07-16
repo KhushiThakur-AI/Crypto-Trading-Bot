@@ -34,7 +34,22 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 - ✅ Trade history
 - ✅ P&L tracking
 - ✅ Per-symbol worksheets (BTCUSDT, ETHUSDT, etc.)
+---
 
+## 🧩 Feature Roadmap
+
+| 📌 Feature                   | 🛠️ Description                                                | 🎯 Why It's Important                         | ✅ Priority     | 🚦 Status   |
+|----------------------------|---------------------------------------------------------------|----------------------------------------------|----------------|-------------|
+| Add More Indicators        | Add 2 advanced indicators to support RSI, EMA, MACD           | Improve accuracy, confirm signals            | ✅ Immediate    | ✅ DONE      |
+| Real Balance Awareness     | Bot checks USDT wallet before trading                         | Prevents over-trading, protects capital      | ✅ Immediate    | ✅ DONE      |
+| Smart Capital Allocation   | Use % of total balance per trade (not fixed $15)              | Adapts to wallet size, safer scaling         | ✅ Immediate    | ✅ DONE      |
+| Diversification Logic      | Invest in 2–3 strongest signals across different coins        | Lowers risk, increases opportunity           | ✅ Immediate    | ✅ DONE      |
+| Trailing Stop Loss (TSL)   | Dynamically lock in profits as price rises                    | Avoids profit reversal                       | ✅ Next Step    | ✅ DONE      |
+| Daily Max Loss Guard       | If total loss > $X in a day, stop trading                     | Avoids wipeouts on bad days                  | ✅ Next Step    | ✅ DONE      |
+| Trade Confidence Scoring   | Only trade if multiple indicators confirm                     | Filters out false signals                    | 🔄 Optional     |N/A |
+| Trade Journal Logging      | Log reasons for each trade in detail                          | For audit, review, debugging                 | ✅ Recommended  | ✅ DONE      |
+| Profit Target Exit         | Automatically exit after X% profit                            | Lock in wins when available                  | 🔄 Optional     | N/A |
+| Dynamic Rebalancing        | Re-allocate funds weekly based on performance                 | For serious long-term optimization           | 🔄 Future       | ✅ DONE      |
 ---
 
 ## 🛠 Files & Structure
@@ -76,12 +91,18 @@ python main.py
 ✅ Automation & Alert Systems
 ✅ Real-world product mindset
 
-📈 Future Plans
-📊 Web dashboard (Streamlit)
-🧠 AI Signal Scoring
-🔄 Real-money toggle
-🔔 TradingView webhook triggers
-💼 Long-term investment mode (BTC/ETH)
+---
+
+## 🚀 Confirmed Roadmap: From Paper Trading to AI Integration
+
+| 🧭 Phase                         | 🛠️ Action                                | 🧰 Tools Used                                | 🎯 Goal                                        |
+|----------------------------------|------------------------------------------|----------------------------------------------|------------------------------------------------|
+| ✅ **1. Paper Trading (Now)**     | Use your bot in Binance Testnet          | Binance Testnet, Google Sheets, Telegram     | Practice signals, SL/TP/TSL, logging alerts    |
+| 🔜 **2. Real Trading (Soon)**     | Switch to real Binance API keys          | Same bot with `RealMoney: true`              | Trade with small capital ($5–$20)              |
+| 🤖 **3. AI Signal Assistant**     | Add ChatGPT & TradingView chart analysis | ChatGPT API, TradingView Webhook             | Get market suggestions and signal validation   |
+| 📈 **4. Long-Term Investment Bot**| Build weekly trend-following bot         | Python, EMA/RSI, Daily Charts, Auto-rebalance| Smart long-term crypto investing               |
+
+---
 
 ⚠️ Disclaimer
 This bot is for educational purposes only.
