@@ -1,0 +1,12 @@
+{
+  "symbols": {
+    "BTCUSDT": { "sl": 0.02, "tp": 0.05, "tsl": 0.03 },
+    "ETHUSDT": { "sl": 0.015, "tp": 0.04, "tsl": 0.025 },
+    "SOLUSDT": { "sl": 0.018, "tp": 0.045, "tsl": 0.03 }
+  },
+  "settings": {
+    "percent_per_trade": 0.33,
+    "min_trade_usd": 5,
+    "daily_loss_limit": 20
+  }
+}
