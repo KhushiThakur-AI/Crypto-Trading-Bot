@@ -60,11 +60,13 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 ## 🛠 Files & Structure
 Crypto-Trading-Bot/
 │
-├── main.py # Main bot script
-├── config.json # SL/TP/TSL settings for each coin
-├── requirements.txt # Python libraries
-├── charts/ # Optional folder to save trade charts
-└── README.md # You're reading it
+├── main.py                # Main bot script
+├── config.json            # SL/TP/TSL settings for each coin
+├── requirements.txt       # Python libraries
+├── .env.example           # Shows required env keys (no secrets)
+├── charts/                # Optional: folder for trade chart images
+├── screenshots/           # Optional: Google Sheets or bot output
+└── README.md              # Full project documentation
 
 ⚙️ Setup Instructions
 
