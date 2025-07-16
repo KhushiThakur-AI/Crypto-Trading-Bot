@@ -123,7 +123,22 @@ python main.py
 | 📈 **4. Long-Term Investment Bot**| Build weekly trend-following bot         | Python, EMA/RSI, Daily Charts, Auto-rebalance| Smart long-term crypto investing               |
 
 ---
+---
 
+## 📢 Share This Project
+
+If you found this project useful, interesting, or inspiring — feel free to ⭐ star it, fork it, or share it!
+
+### 🤝 Contribute
+This is an open-source paper trading bot — if you have ideas for new indicators, risk strategies, or features, contributions are welcome!
+
+### 🔗 Connect with Me
+👩‍💻 GitHub: [@KhushiThakur-AI](https://github.com/KhushiThakur-AI)  
+💬 Telegram: Coming soon  
+📫 LinkedIn: [Khushi Thakur](https://www.linkedin.com/in/khushi-thakur)  
+
+⭐ Star this repo to support my work and keep this bot growing!
+---
 ⚠️ Disclaimer
 This bot is for educational purposes only.
 I am not a financial advisor. Use at your own risk.
