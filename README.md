@@ -1,4 +1,9 @@
 # 📈 Crypto-Trading-Bot
+![Python](https://img.shields.io/badge/Python-3.10-blue.svg)
+![Status](https://img.shields.io/badge/Status-Active-success.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Last Commit](https://img.shields.io/github/last-commit/KhushiThakur-AI/Crypto-Trading-Bot)
+![Repo Size](https://img.shields.io/github/repo-size/KhushiThakur-AI/Crypto-Trading-Bot)
 
 A real-time, multi-indicator **crypto paper trading bot** built in Python, using the Binance Testnet API.  
 This bot monitors selected crypto pairs, detects trading signals using indicators like **RSI, EMA, MACD, ADX**, and **Bollinger Bands**, and sends real-time **Telegram alerts**, with **auto-logging to Google Sheets**.
