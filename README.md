@@ -68,6 +68,14 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 ### 📄 Google Sheets Trade Log
 ![Google Sheets Log](Google%20Logs%20Screenshot)
 
+📊 Charts (Telegram Updates)
+Visual chart updates shared directly on Telegram when trades occur.
+
+📈 Indicator Updates (Telegram)
+RSI, EMA, and MACD indicator signals sent periodically.
+
+💰 Balance Update Screenshot
+Live tracking of balance updates after each trade.
 ---
 
 ## 🛠 Files & Structure
@@ -127,10 +135,10 @@ python main.py
 
 ## 📢 Share This Project
 
-If you found this project useful, interesting, or inspiring — feel free to ⭐ star it, fork it, or share it!
+If you found this project useful, interesting, or inspiring, feel free to ⭐ star it, fork it, or share it!
 
 ### 🤝 Contribute
-This is an open-source paper trading bot — if you have ideas for new indicators, risk strategies, or features, contributions are welcome!
+This is an open-source paper trading bot. If you have ideas for new indicators, risk strategies, or features, contributions are welcome!
 
 ### 🔗 Connect with Me
 👩‍💻 GitHub: [@KhushiThakur-AI](https://github.com/KhushiThakur-AI)  
@@ -144,6 +152,6 @@ This bot is for educational purposes only.
 I am not a financial advisor. Use at your own risk.
 Never use real money without fully understanding what the code does.
 
-> 🔒 **Security Note:** This project is configured for paper trading only. All API keys and sensitive details are stored privately using environment variables and are not exposed anywhere in this repository.
+**Security Note:** This project is configured for paper trading only. All API keys and sensitive details are stored privately using environment variables and are not exposed anywhere in this repository.
 
 **🙌 Created by @KhushiThakur-AI**
