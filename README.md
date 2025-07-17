@@ -68,14 +68,15 @@ This bot monitors selected crypto pairs, detects trading signals using indicator
 ### 📄 Google Sheets Trade Log
 ![Google Sheets Log](Google%20Logs%20Screenshot)
 
-📊 Charts (Telegram Updates)
-Visual chart updates shared directly on Telegram when trades occur.
+**Chart Screenshot on Trade Execution**  
+![Charts (Telegram Updates) Screenshot](https://github.com/KhushiThakur-AI/Crypto-Trading-Bot/blob/main/Charts%20(Telegram%20Updates)%20Screenshot)
 
-📈 Indicator Updates (Telegram)
-RSI, EMA, and MACD indicator signals sent periodically.
+**Indicator Confirmation Message**  
+![Indicators updates Telegram Screenshot](https://github.com/KhushiThakur-AI/Crypto-Trading-Bot/blob/main/Indicators%20updates%20Telegram%20Screenshot)
 
-💰 Balance Update Screenshot
-Live tracking of balance updates after each trade.
+**Live Balance Update**  
+![Balance Update Screenshot](https://github.com/KhushiThakur-AI/Crypto-Trading-Bot/blob/main/Balance%20Update%20Screenshot)
+
 ---
 
 ## 🛠 Files & Structure
