@@ -1,12 +1,41 @@
 {
   "symbols": {
-    "BTCUSDT": { "sl": 0.02, "tp": 0.05, "tsl": 0.03 },
-    "ETHUSDT": { "sl": 0.015, "tp": 0.04, "tsl": 0.025 },
-    "SOLUSDT": { "sl": 0.018, "tp": 0.045, "tsl": 0.03 }
+    "BTCUSDT": {
+      "enabled": true,
+      "quantity": 0.001,
+      "sl_percent": 2.0,
+      "tp_percent": 3.0,
+      "trailing_sl_percent": 1.5,
+      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
+    },
+    "ETHUSDT": {
+      "enabled": true,
+      "quantity": 0.01,
+      "sl_percent": 2.5,
+      "tp_percent": 4.0,
+      "trailing_sl_percent": 2.0,
+      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
+    },
+    "SOLUSDT": {
+      "enabled": true,
+      "quantity": 1,
+      "sl_percent": 3.0,
+      "tp_percent": 5.0,
+      "trailing_sl_percent": 2.5,
+      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
+    }
+  },
+  "telegram": {
+    "enable_telegram": true,
+    "send_charts": true
+  },
+  "api": {
+    "use_testnet": true
   },
   "settings": {
-    "percent_per_trade": 0.33,
-    "min_trade_usd": 5,
-    "daily_loss_limit": 20
+    "interval": "5m",
+    "data_points": 100,
+    "check_interval_seconds": 60,
+    "daily_summary_time": "23:55"
   }
 }
