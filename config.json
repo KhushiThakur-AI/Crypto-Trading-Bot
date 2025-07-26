@@ -1,41 +1,43 @@
 {
   "symbols": {
-    "BTCUSDT": {
-      "enabled": true,
-      "quantity": 0.001,
-      "sl_percent": 2.0,
-      "tp_percent": 3.0,
-      "trailing_sl_percent": 1.5,
-      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
-    },
-    "ETHUSDT": {
-      "enabled": true,
-      "quantity": 0.01,
-      "sl_percent": 2.5,
-      "tp_percent": 4.0,
-      "trailing_sl_percent": 2.0,
-      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
-    },
-    "SOLUSDT": {
-      "enabled": true,
-      "quantity": 1,
-      "sl_percent": 3.0,
-      "tp_percent": 5.0,
-      "trailing_sl_percent": 2.5,
-      "indicators": ["RSI", "EMA", "MACD", "BOLL", "STOCH_RSI"]
-    }
-  },
-  "telegram": {
-    "enable_telegram": true,
-    "send_charts": true
+    "BTCUSDT": { "sl": 0.02, "tp": 0.04, "tsl": 0.01 },
+    "ETHUSDT": { "sl": 0.02, "tp": 0.04, "tsl": 0.01 },
+    "SOLUSDT": { "sl": 0.03, "tp": 0.05, "tsl": 0.015 },
+    "XRPUSDT": { "sl": 0.025, "tp": 0.045, "tsl": 0.012 },
+    "BNBUSDT": { "sl": 0.02, "tp": 0.05, "tsl": 0.015 }
   },
   "api": {
-    "use_testnet": true
+    "api_key": "YOUR_BINANCE_API_KEY",
+    "api_secret": "YOUR_BINANCE_API_SECRET"
+  },
+  "telegram": {
+    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+    "chat_id": "YOUR_TELEGRAM_CHAT_ID"
   },
   "settings": {
-    "interval": "5m",
-    "data_points": 100,
-    "check_interval_seconds": 60,
-    "daily_summary_time": "23:55"
+    "realtime_mode": true,
+    "timeframe": "15m",
+    "quantity": 0.05,
+    "spreadsheet_id": "1t6-lEZgqct2-ZrKzFy1fGIdQ_Ed6Hm6w_G-JN2Spiho",
+    "indicators": {
+      "rsi_enabled": true,
+      "rsi_period": 14,
+      "rsi_overbought": 70,
+      "rsi_oversold": 30,
+      "ema_enabled": true,
+      "ema_fast": 50,
+      "ema_slow": 200,
+      "macd_enabled": true,
+      "macd_fast": 12,
+      "macd_slow": 26,
+      "macd_signal": 9,
+      "bollinger_enabled": true,
+      "bollinger_period": 20,
+      "bollinger_std": 2,
+      "stoch_rsi_enabled": true,
+      "stoch_rsi_period": 14,
+      "stoch_rsi_overbought": 80,
+      "stoch_rsi_oversold": 20
+    }
   }
 }
