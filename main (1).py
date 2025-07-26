@@ -1,112 +1,118 @@
-import time
+import os
 import json
+import time
 import logging
-import gspread
 import requests
 import pandas as pd
 import ta
 import datetime
+import matplotlib.pyplot as plt
 from binance.client import Client
-from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
+import telegram
+import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-# ⏱️ Set up logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+# Load environment variables
+load_dotenv()
 
-# ✅ Load settings from config.json
+# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger()
+
+# Load config
 with open("config.json") as f:
     config = json.load(f)
 
-settings = config["settings"]
 symbols = config["symbols"]
+settings = config["settings"]
 
-# ✅ Setup Binance client
-binance_client = Client(settings["api_key"], settings["api_secret"]) if "api_key" in settings else None
+# ✅ Replit secret usage
+telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-# ✅ Setup Google Sheets
-gs_client = None
-spreadsheet = None
-try:
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
-    gs_client = gspread.authorize(creds)
-    spreadsheet = gs_client.open_by_key(settings["spreadsheet_id"])
-    logging.info("✅ Google Sheets authentication successful!")
-except Exception as e:
-    logging.error(f"❌ Google Sheets authentication failed: {e}")
-    spreadsheet = None
+api_key = os.getenv("BINANCE_API_KEY")
+api_secret = os.getenv("BINANCE_API_SECRET")
 
-# ✅ Telegram config
-TELEGRAM_TOKEN = config["telegram"]["token"]
-TELEGRAM_CHAT_ID = config["telegram"]["chat_id"]
+spreadsheet_id = os.getenv("SPREADSHEET_ID")
 
-def send_telegram(message):
+# Setup clients
+client = Client(api_key, api_secret)
+bot = telegram.Bot(token=telegram_bot_token)
+
+scope = ["https://www.googleapis.com/auth/spreadsheets"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+gsheet = gspread.authorize(creds)
+
+# Utility functions
+def get_klines(symbol, interval, lookback):
     try:
-        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        payload = {"chat_id": TELEGRAM_CHAT_ID, "text": message}
-        response = requests.post(url, data=payload)
-        if response.status_code != 200:
-            logging.error(f"❌ Telegram failed [{response.status_code}]: {response.text}")
-        else:
-            logging.info("📨 Telegram message sent successfully.")
+        data = client.get_klines(symbol=symbol, interval=interval, limit=lookback)
+        df = pd.DataFrame(data, columns=['timestamp','open','high','low','close','volume','close_time','qav','num_trades','taker_base_vol','taker_quote_vol','ignore'])
+        df['close'] = pd.to_numeric(df['close'])
+        df['high'] = pd.to_numeric(df['high'])
+        df['low'] = pd.to_numeric(df['low'])
+        df['open'] = pd.to_numeric(df['open'])
+        df['volume'] = pd.to_numeric(df['volume'])
+        df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+        return df
     except Exception as e:
-        logging.error(f"❌ Telegram exception: {e}")
+        logger.error(f"Error fetching klines for {symbol}: {e}")
+        return None
 
-# ✅ Example function to check signals (RSI, EMA, MACD logic goes here)
-def check_signals():
-    logging.info("🔁 Checking signals for all symbols... (logic placeholder)")
-    # Your real trading logic goes here
+def send_telegram_message(message):
+    try:
+        bot.send_message(chat_id=telegram_chat_id, text=message)
+    except Exception as e:
+        logger.error(f"Telegram send error: {e}")
 
-# ✅ Daily P&L summary
-def send_daily_summary_to_telegram():
-    if spreadsheet:
-        try:
-            summary_sheet = spreadsheet.worksheet("Daily Summary")
-            rows = summary_sheet.get_all_values()
-            if len(rows) > 1:
-                today = datetime.datetime.now().strftime("%Y-%m-%d")
-                today_data = [row for row in rows if row[0] == today]
-                if today_data:
-                    last = today_data[-1]
-                    profit = last[1] if len(last) > 1 else "0"
-                    send_telegram(f"📊 *Daily P&L Summary ({today})*\nProfit/Loss: {profit} USDT")
-        except Exception as e:
-            logging.error(f"❌ Daily summary error: {e}")
+# Example signal checker
+def check_signal(symbol):
+    df = get_klines(symbol, '15m', 100)
+    if df is None:
+        return
 
-# ✅ Weekly P&L summary
-def send_weekly_summary():
-    if spreadsheet:
-        try:
-            summary_sheet = spreadsheet.worksheet("Daily Summary")
-            df = pd.DataFrame(summary_sheet.get_all_records())
-            if not df.empty:
-                last_week = df.tail(7)
-                total = last_week["Profit/Loss"].astype(float).sum()
-                send_telegram(f"📈 *Weekly Summary*\n7-day P&L: {total:.2f} USDT")
-        except Exception as e:
-            logging.error(f"❌ Weekly summary error: {e}")
+    try:
+        # Indicators
+        df['rsi'] = ta.momentum.RSIIndicator(df['close'], window=14).rsi()
+        df['ema'] = ta.trend.EMAIndicator(df['close'], window=20).ema_indicator()
+        df['macd'] = ta.trend.MACD(df['close']).macd_diff()
 
-# ✅ Real-time trading loop
-def run_bot_loop():
-    logging.info(f"🚀 Bot started. Real-time interval = {settings['interval_minutes']} mins.")
-    check_signals()
+        last_rsi = df['rsi'].iloc[-1]
+        last_ema = df['ema'].iloc[-1]
+        last_macd = df['macd'].iloc[-1]
+        last_price = df['close'].iloc[-1]
 
-# ✅ Scheduler
-scheduler = BackgroundScheduler(timezone="Asia/Kolkata")
-scheduler.add_job(run_bot_loop, "interval", minutes=settings["interval_minutes"])
-scheduler.add_job(send_daily_summary_to_telegram, "cron", hour=23, minute=59)
-scheduler.add_job(send_weekly_summary, "cron", day_of_week="sun", hour=23, minute=59)
-scheduler.start()
+        signal = None
+        if last_rsi < 30 and last_macd > 0 and last_price > last_ema:
+            signal = "BUY"
+        elif last_rsi > 70 and last_macd < 0 and last_price < last_ema:
+            signal = "SELL"
 
-# ✅ Send startup message
-now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-logging.info("📨 Sending bot start message to Telegram...")
-send_telegram(f"🤖 Bot started at {now} and is monitoring trades every {settings['interval_minutes']} minutes.")
+        logger.info(f"{symbol} signal: {signal}, RSI: {last_rsi:.2f}, EMA: {last_ema:.2f}, MACD: {last_macd:.4f}")
 
-# 🕒 Keep alive
-try:
-    while True:
-        time.sleep(60)
-except (KeyboardInterrupt, SystemExit):
-    scheduler.shutdown()
-    logging.info("🛑 Bot stopped.")
+        if signal:
+            msg = f"{symbol} SIGNAL: {signal}\nPrice: {last_price}\nRSI: {last_rsi:.2f}\nMACD: {last_macd:.4f}\nEMA20: {last_ema:.2f}"
+            send_telegram_message(msg)
+
+            # Plot chart
+            plt.figure(figsize=(10, 5))
+            plt.plot(df['timestamp'], df['close'], label='Price')
+            plt.plot(df['timestamp'], df['ema'], label='EMA20')
+            plt.title(f"{symbol} Signal: {signal}")
+            plt.legend()
+            plt.grid()
+            filename = f"chart_{symbol}.png"
+            plt.savefig(filename)
+            plt.close()
+
+            with open(filename, 'rb') as photo:
+                bot.send_photo(chat_id=telegram_chat_id, photo=photo)
+    except Exception as e:
+        logger.error(f"Error processing {symbol}: {e}")
+
+# Main loop
+while True:
+    for symbol in symbols:
+        check_signal(symbol)
+    time.sleep(settings.get("loop_interval", 60))
