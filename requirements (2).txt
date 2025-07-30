@@ -1,5 +1,10 @@
 streamlit
 pandas
+ta
 matplotlib
+python-telegram-bot
+python-dotenv
 gspread
 oauth2client
+binance
+firebase-admin
