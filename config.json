@@ -4,20 +4,30 @@
     "ETHUSDT": { "sl": 0.02, "tp": 0.04, "tsl": 0.01 },
     "SOLUSDT": { "sl": 0.03, "tp": 0.05, "tsl": 0.015 },
     "XRPUSDT": { "sl": 0.025, "tp": 0.045, "tsl": 0.012 },
-    "BNBUSDT": { "sl": 0.02, "tp": 0.05, "tsl": 0.015 }
+    "BNBUSDT": { "sl": 0.02, "tp": 0.05, "tsl": 0.015 },
+    "LINKUSDT": { "sl": 0.025, "tp": 0.045, "tsl": 0.012 },
+    "OPUSDT": { "sl": 0.03, "tp": 0.05, "tsl": 0.015 },
+    "SHIBUSDT": { "sl": 0.04, "tp": 0.07, "tsl": 0.02 },
+    "DOGEUSDT": { "sl": 0.035, "tp": 0.06, "tsl": 0.018 },
+    "WIFUSDT": { "sl": 0.05, "tp": 0.09, "tsl": 0.025 },
+    "PEPEUSDT": { "sl": 0.05, "tp": 0.09, "tsl": 0.025 }
   },
   "api": {
-    "api_key": "YOUR_BINANCE_API_KEY",
-    "api_secret": "YOUR_BINANCE_API_SECRET"
+    "api_key": "FROM_REPLIT_SECRETS",
+    "api_secret": "FROM_REPLIT_SECRETS"
   },
   "telegram": {
-    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
-    "chat_id": "YOUR_TELEGRAM_CHAT_ID"
+    "bot_token": "FROM_REPLIT_SECRETS",
+    "chat_id": "FROM_REPLIT_SECRETS"
   },
   "settings": {
-    "realtime_mode": true,
+    "realtime_mode": false,
+    "paper_trading_balance": 10000,
+    "trade_amount_usd": 100,
+    "check_interval_seconds": 60,
+    "main_loop_sleep_minutes": 5,
     "timeframe": "15m",
-    "quantity": 0.05,
+    "lookback": 250,
     "spreadsheet_id": "1t6-lEZgqct2-ZrKzFy1fGIdQ_Ed6Hm6w_G-JN2Spiho",
     "indicators": {
       "rsi_enabled": true,
